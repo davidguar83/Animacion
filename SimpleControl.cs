@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class  SimpleControl: MonoBehaviour{
-
+public class SimpleControl : MonoBehaviour
+{
+    
     Animator miAnimator;
 
     bool salto;
@@ -12,13 +13,16 @@ public class  SimpleControl: MonoBehaviour{
     // Start is called before the first frame update
     void Start()
     {
-        miAnimator = GetComponent<Animator>();
+    miAnimator = GetComponent<Animator>();
     }
 
-    private void OnFire (InputValue movementValue)
+     private void OnFire (InputValue movementValue)
     {
+        Debug.Log("Estoy en OnFire");
+        miAnimator.SetBool("salto", true);
 
-        Debug.Log("Estoy en la consola");
-       
+
     }
+
 }
+
