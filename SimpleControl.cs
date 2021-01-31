@@ -27,32 +27,46 @@ public class SimpleControl : MonoBehaviour
                 {
 
                     Debug.Log("tecla pulsada continuamente");
-
+                    Salto();
 
                 }
                 else
                 {
 
                     Debug.Log("Salto efectuado");
-                  //  miAnimator.SetBool("Salto", false);
+                    miAnimator.SetBool("Salto", false);
                 }
                 break;
 
             case InputActionPhase.Started:
 
                 Debug.Log("Phase Iniciada");
-               // Salto();
+                Salto();
                 break;
 
             case InputActionPhase.Canceled:
                 Debug.Log("Phase Cancelada");
+                miAnimator.SetBool("salto", false);
                 break;
 
       //  Debug.Log("Estoy en OnFire");
        // miAnimator.SetBool("salto", true);
 
+
+               
+
         }
     }
+
+
+    private void Salto()
+    {
+
+        miAnimator.SetBool("salto", true);
+
+    }
+
+
 
 }
 
