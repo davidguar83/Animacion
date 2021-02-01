@@ -9,7 +9,7 @@ public class SimpleControl : MonoBehaviour
     
     Animator miAnimator;
 
-    bool salto;
+   
 
     // Start is called before the first frame update
     void Start()
@@ -35,17 +35,18 @@ public class SimpleControl : MonoBehaviour
 
                     Debug.Log("Salto efectuado");
                     miAnimator.SetBool("Salto", false);
+                   
                 }
                 break;
 
             case InputActionPhase.Started:
 
-                Debug.Log("Phase Iniciada");
+                Debug.Log("salto Iniciada");
                 Salto();
                 break;
 
             case InputActionPhase.Canceled:
-                Debug.Log("Phase Cancelada");
+                Debug.Log("salto Cancelada");
                 miAnimator.SetBool("salto", false);
                 break;
 
@@ -63,6 +64,51 @@ public class SimpleControl : MonoBehaviour
     {
 
         miAnimator.SetBool("salto", true);
+
+    }
+
+    public void OnMove(InputAction.CallbackContext context)
+    {
+        
+        switch (context.phase)
+        {
+            case InputActionPhase.Performed:
+               
+                if (context.interaction is SlowTapInteraction)
+                {
+                  //strar run 
+                    Run();
+                    
+                }
+                else
+                {
+                   // stop run
+                    miAnimator.SetBool("run", false);
+                }
+                break;
+
+            case InputActionPhase.Started:
+               // start run
+                Run();
+                break;
+
+            case InputActionPhase.Canceled:
+                Debug.Log("Phase Cancelelada");
+                // stop run
+                miAnimator.SetBool("run", false);
+                break;
+        }
+    }
+
+
+
+  
+
+
+    private void Run()
+    {
+
+        miAnimator.SetBool("run", true);
 
     }
 
